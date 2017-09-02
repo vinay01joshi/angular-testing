@@ -1,9 +1,23 @@
 import { VoteComponent } from './vote.component'; 
 
 describe('VoteComponent', () => {
-  it('', () => {
-  });
+  //arrage
+  let component: VoteComponent;
 
-  it('', () => {
+  beforeEach(()=>{
+    component = new VoteComponent();
+  });
+  
+  it('should increment totoal vote when upvoted', () => {  
+    //act
+    component.upVote();
+    //assert
+    expect(component.totalVotes).toBe(1);
+  });
+  it('should decrement totoal vote when downvoted', () => {
+    //act
+    component.downVote();
+    //assert
+    expect(component.totalVotes).toBe(-1);
   });
 });
