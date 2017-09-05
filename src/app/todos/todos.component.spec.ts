@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async,fakeAsync,tick, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TodosComponent } from './todos.component';
 import { TodoService } from "./todo.service";
@@ -24,13 +24,13 @@ describe('TodosComponent', () => {
     // fixture.detectChanges();    
   });
 
-  it('should load todos from the server', async(() => {
+  it('should load todos from the server', fakeAsync(() => {
     let service = TestBed.get(TodoService);
     spyOn(service,'getTodosPromise').and.returnValue(Promise.resolve([1,2,3]));
     fixture.detectChanges();
 
-    fixture.whenStable().then(()=>{
-      expect( component.todos.length).toBe(3);
-    });
+    tick();
+    expect( component.todos.length).toBe(3);
+
   }));
 });
